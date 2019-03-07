@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <form class="form-inline my-2 my-lg-0">
+            <button id="resetBtn" class="btn btn-outline-default my-2 my-sm-0">Reset</button>
+            &nbsp;
+            <label for="selectLevel">Level:&nbsp;</label>
+            <select class="form-control bg-dark" id="selectLevel">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+            </select>
+            &nbsp;
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="playerSymbolSwitch">
+                <label id="switchLabel" class="custom-control-label" for="playerSymbolSwitch">Play as X</label>
+            </div>
+        </form>
+    </nav>
+    <main role="main" class="container">
+        <table class="table table-bordered table-dark">
+            <tbody>
+                <tr>
+                    <td id="0"></td>
+                    <td id="1"></td>
+                    <td id="2"></td>
+                </tr>
+                <tr>
+                    <td id="3"></td>
+                    <td id="4"></td>
+                    <td id="5"></td>
+                </tr>
+                <tr>
+                    <td id="6"></td>
+                    <td id="7"></td>
+                    <td id="8"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+
+<script>
+    // const wins = [[0, 1, 2], [0, 4, 8], [0, 3, 6], [4, 1, 7], [4, 3, 5], [4, 2, 6], [8, 5, 2], [8, 7, 6]];
+
+    // const symbols = {};
+    // symbols['x'] = '<i class="fas fa-10x fa-times"></i>';
+    // symbols['o'] = '<i class="fas fa-10x fa-circle"></i>';
+
+    // let humanPlayer = 'x',
+    //     robotPlayer = 'o';
+
+    // $(document).ready(function () {
+    //     $("#playerSymbolSwitch").change(function () {
+    //         if ($(this).prop('checked')) {
+    //             $("#switchLabel").text("Play as O");
+    //             humanPlayer = 'o';
+    //             robotPlayer = 'x';
+    //             play();
+    //         } else {
+    //             $("#switchLabel").text("Play as X");
+    //             humanPlayer = 'x';
+    //             robotPlayer = 'o';
+    //         }
+    //     });
+
+    //     $("#resetBtn").click(function () {
+    //         $("#playerSymbolSwitch").attr('disabled', false);
+    //         $("td").each(function () {
+    //             $(this).find('svg').remove()
+    //             $(this).removeClass('human').removeClass('robot');
+    //         });
+    //         if ($("#playerSymbolSwitch").prop('checked'))
+    //             play();
+    //         return false;
+    //     });
+
+    //     $("td").click(function () {
+    //         $("#playerSymbolSwitch").attr('disabled', true);
+    //         if (!isUsed($(this))) {
+    //             $(this).addClass("human").append(symbols[humanPlayer]);
+    //             if (checkWin('human'))
+    //                 alert('you won');
+    //             else if (checkEmptySpaces())
+    //                 play();
+    //             else
+    //                 alert('draw');
+    //         }
+    //     });
+    // });
+
+    // function checkWin(player) {
+    //     for (let i = 0; i < wins.length; i++) {
+    //         let win = wins[i];
+    //         if ($("td").eq(win[0]).hasClass(player) && $("td").eq(win[1]).hasClass(player) && $("td").eq(win[2]).hasClass(player))
+    //             return true;
+    //     }
+    //     return false;
+    // }
+
+    // function checkPossibleWin() {
+    //     for (let i = 0; i < wins.length; i++) {
+    //         let win = wins[i];
+    //         if ($('td').eq(win[0]).hasClass('robot') && $('td').eq(win[1]).hasClass('robot') && !isUsed($('td').eq(win[2])))
+    //             return win[2];
+    //         else if ($('td').eq(win[0]).hasClass('robot') && $('td').eq(win[2]).hasClass('robot') && !isUsed($('td').eq(win[1])))
+    //             return win[1];
+    //         else if ($('td').eq(win[1]).hasClass('robot') && $('td').eq(win[2]).hasClass('robot') && !isUsed($('td').eq(win[0])))
+    //             return win[0];
+    //     }
+    //     return false;
+    // }
+
+    // function checkPossibleBlock() {
+    //     for (let i = 0; i < wins.length; i++) {
+    //         let win = wins[i];
+    //         if ($('td').eq(win[0]).hasClass('human') && $('td').eq(win[1]).hasClass('human') && !isUsed($('td').eq(win[2])))
+    //             return win[2];
+    //         else if ($('td').eq(win[0]).hasClass('human') && $('td').eq(win[2]).hasClass('human') && !isUsed($('td').eq(win[1])))
+    //             return win[1];
+    //         else if ($('td').eq(win[1]).hasClass('human') && $('td').eq(win[2]).hasClass('human') && !isUsed($('td').eq(win[0])))
+    //             return win[0];
+    //     }
+    //     return false;
+    // }
+
+    // function checkEmptySpaces() {
+    //     let emptySpaceExists = false;
+    //     $("td").each(function () {
+    //         // let temp = !$(this).hasClass('x') && !$(this).hasClass('o');
+    //         if (!isUsed($(this)))
+    //             emptySpaceExists = true;
+    //     });
+    //     return emptySpaceExists;
+    // }
+
+    // function isUsed(tile) {
+    //     return $(tile).hasClass('human') || $(tile).hasClass('robot');
+    // }
+
+    // function gameOver() {
+    //     alert("game over");
+    // }
+
+    // function play() {
+    //     switch ($("#selectLevel").find(":selected").text()) {
+    //         case '2':
+    //         case '1':
+    //             let winningMove = checkPossibleWin();
+    //             if (winningMove) {
+    //                 $("td").eq(winningMove).addClass("robot").append(symbols[robotPlayer]);
+    //                 break;
+    //             }
+    //         case '2':
+    //             let blockingMove = checkPossibleBlock();
+    //             if (blockingMove) {
+    //                 $("td").eq(blockingMove).addClass("robot").append(symbols[robotPlayer]);
+    //                 break;
+    //             }
+    //         case '0':
+    //             playRandomTile();
+    //             break;
+    //         default:
+    //             alert('error');
+    //     }
+
+    //     if (checkWin('robot'))
+    //         alert('the robot won');
+    //     else if (!checkEmptySpaces())
+    //         alert('draw');
+    // }
+
+    // function playRandomTile() {
+    //     let tile;
+    //     do {
+    //         tile = $("td").eq(getRandomTile());
+    //     } while (isUsed(tile));
+    //     tile.addClass("robot").append(symbols[robotPlayer]);
+    // }
+
+    // function getRandomTile() {
+    //     return Math.floor(Math.random() * Math.floor(9));
+    // }
+</script>
+
+</html>

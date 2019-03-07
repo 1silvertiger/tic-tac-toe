@@ -1,0 +1,29 @@
+.table {
+    position: absolute;
+    height: 100%;
+    left: 0;
+}
+
+.btn {
+    color: white;
+    border-color: white;
+
+    :hover{
+        background-color: slategray;
+        color:white;
+    }
+}
+
+nav {
+    color: white!important;
+
+    option {
+        color: white!important;
+    }
+}
+
+td {
+    cursor: pointer;
+    height: 33%;
+    width: 33%;
+}
