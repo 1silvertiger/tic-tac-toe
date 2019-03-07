@@ -65,7 +65,7 @@ const wins = [[0, 1, 2], [0, 4, 8], [0, 3, 6], [4, 1, 7], [4, 3, 5], [4, 2, 6], 
             else if ($('td').eq(win[1]).hasClass('robot') && $('td').eq(win[2]).hasClass('robot') && !isUsed($('td').eq(win[0])))
                 return win[0];
         }
-        return false;
+        return -1;
     }
 
     function checkPossibleBlock() {
@@ -78,13 +78,12 @@ const wins = [[0, 1, 2], [0, 4, 8], [0, 3, 6], [4, 1, 7], [4, 3, 5], [4, 2, 6], 
             else if ($('td').eq(win[1]).hasClass('human') && $('td').eq(win[2]).hasClass('human') && !isUsed($('td').eq(win[0])))
                 return win[0];
         }
-        return false;
+        return -1;
     }
 
     function checkEmptySpaces() {
         let emptySpaceExists = false;
         $("td").each(function () {
-            // let temp = !$(this).hasClass('x') && !$(this).hasClass('o');
             if (!isUsed($(this)))
                 emptySpaceExists = true;
         });
@@ -104,13 +103,13 @@ const wins = [[0, 1, 2], [0, 4, 8], [0, 3, 6], [4, 1, 7], [4, 3, 5], [4, 2, 6], 
             case '2':
             case '1':
                 let winningMove = checkPossibleWin();
-                if (winningMove) {
+                if (winningMove > -1) {
                     $("td").eq(winningMove).addClass("robot").append(symbols[robotPlayer]);
                     break;
                 }
             case '2':
                 let blockingMove = checkPossibleBlock();
-                if (blockingMove) {
+                if (blockingMove > -1) {
                     $("td").eq(blockingMove).addClass("robot").append(symbols[robotPlayer]);
                     break;
                 }
