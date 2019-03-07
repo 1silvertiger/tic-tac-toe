@@ -1,6 +1,6 @@
 .table {
   position: absolute;
-  height: 100%;
+  height: 90vh;
   left: 0; }
 
 .btn {
@@ -11,7 +11,8 @@
     color: white; }
 
 nav {
-  color: white !important; }
+  color: white !important;
+  height: 10vh; }
   nav option {
     color: white !important; }
 
